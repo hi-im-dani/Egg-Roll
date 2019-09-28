@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public bool DebugMovement;
+    public int Speed;
     private int FramesCollidedWithTerrian;
     
     // Start is called before the first frame update
@@ -32,6 +33,10 @@ public class Movement : MonoBehaviour
         {
             FramesCollidedWithTerrian++;
         }
+        else
+        {
+            FramesCollidedWithTerrian = 0;
+        }
     }
 
     void DebugWASD()
@@ -40,19 +45,20 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-
+                transform.GetComponent<Rigidbody>().AddForce(Vector3.forward * Speed);
             }
             else if (Input.GetKey(KeyCode.A))
             {
-
+                transform.GetComponent<Rigidbody>().AddForce(Vector3.left * Speed);
             }
             else if (Input.GetKey(KeyCode.S))
             {
+                transform.GetComponent<Rigidbody>().AddForce(Vector3.back * Speed);
 
             }
             else if (Input.GetKey(KeyCode.D))
             {
-
+                transform.GetComponent<Rigidbody>().AddForce(Vector3.right * Speed);
             }
         }
     }
