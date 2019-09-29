@@ -5,13 +5,12 @@ using UnityEngine;
 public class MovementP2 : MonoBehaviour
 {
     public bool DebugMovement;
-    public int Speed;
-    private int FramesCollidedWithTerrian;
+    private int Speed;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Speed = transform.parent.Find("Player 1").GetComponent<Movement>().Speed;
     }
 
     // Update is called once per frame
@@ -19,22 +18,10 @@ public class MovementP2 : MonoBehaviour
     {
         print(Input.GetAxis("2X360_LStickY"));
         print(Input.GetAxis("2X360_LStickX"));
-        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.forward * Speed * -Input.GetAxis("1X360_LStickY"));
-        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.right * Speed * Input.GetAxis("1X360_LStickX"));
+        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.forward * Speed * -Input.GetAxisRaw("2X360_LStickY"));
+        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.right * Speed * Input.GetAxisRaw("2X360_LStickX"));
         DebugWASD();
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.GetComponent<TerrainCollider>().enabled) //other.tag == "collision tag name"
-        {
-            FramesCollidedWithTerrian++;
-        }
-        else
-        {
-            FramesCollidedWithTerrian = 0;
-        }
     }
 
     void DebugWASD()

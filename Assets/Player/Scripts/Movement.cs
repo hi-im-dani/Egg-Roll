@@ -19,22 +19,10 @@ public class Movement : MonoBehaviour
     {
         print(Input.GetAxis("1X360_LStickY"));
         print(Input.GetAxis("1X360_LStickX"));
-        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.forward * Speed * -Input.GetAxis("1X360_LStickY"));
-        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.right * Speed * Input.GetAxis("1X360_LStickX"));
+        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.forward * Speed * -Input.GetAxisRaw("1X360_LStickY"));
+        transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.right * Speed * Input.GetAxisRaw("1X360_LStickX"));
         DebugWASD();
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.GetComponent<TerrainCollider>().enabled) //other.tag == "collision tag name"
-        {
-            FramesCollidedWithTerrian++;
-        }
-        else
-        {
-            FramesCollidedWithTerrian = 0;
-        }
     }
 
     void DebugWASD()
