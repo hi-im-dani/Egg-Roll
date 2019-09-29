@@ -8,6 +8,7 @@ public class GlobalVariables : MonoBehaviour
     public int player1Egg = -1;
     public int player2Egg = -1;
     public int eggPage = 0;
+    public int MAX_EGG = 12;
 
     public const int LEVELS = 1;
 

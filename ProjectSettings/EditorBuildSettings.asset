@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EggSelect.unity
     guid: cca5004d59411ff42b0f1e0faa5f8534
+  - enabled: 1
+    path: Assets/Scenes/GamemodeSelect.unity
+    guid: c2c4f96bbac6b0f47b73c7fb5782203f
   m_configObjects: {}

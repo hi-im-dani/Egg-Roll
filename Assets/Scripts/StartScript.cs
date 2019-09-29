@@ -11,13 +11,32 @@ public class StartScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("EggSelect"))
+        {
+            for (int i = 0; i < 12; i++)
+            {
+
+                GameObject.Find("Egg" + i + " (1)").GetComponent<MeshRenderer>().enabled = false;
+                GameObject.Find("Egg" + i).GetComponent<MeshRenderer>().enabled = (i >= 0 && i < 6);
+
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+
+        GlobalVariables gv = GameObject.Find("Carton").GetComponent<GlobalVariables>();
+
+        for (int i = 0; i < 12; i++)
+        {
+
+            GameObject.Find("Egg" + i + " (1)").GetComponent<MeshRenderer>().enabled = (gv.player1Egg == i);
+            GameObject.Find("Egg" + i).GetComponent<MeshRenderer>().enabled = (i >= gv.eggPage * 6 && i < (gv.eggPage + 1) * 6);
+
+        }
     }
 
     void FixedUpdate()
@@ -56,11 +75,19 @@ public class StartScript : MonoBehaviour
 
     }
 
-    public void loadGame() {
+    public void loadGamemodeSelect() {
+
 
         GlobalVariables gv = GameObject.Find("Carton").GetComponent<GlobalVariables>();
-        if(gv.player1Egg != -1)
-            SceneManager.LoadScene("Level" + gv.level);
+        if (gv.player1Egg != -1)
+            SceneManager.LoadScene("GamemodeSelect");
+
+    }
+
+    public void loadGame(string gamemode) {
+
+        GlobalVariables gv = GameObject.Find("Carton").GetComponent<GlobalVariables>();
+        SceneManager.LoadScene("Level" + gv.level + gamemode);
 
     }
 
@@ -94,9 +121,16 @@ public class StartScript : MonoBehaviour
 
     public void selectEgg(int egg) {
 
-
         GlobalVariables gv = GameObject.Find("Carton").GetComponent<GlobalVariables>();
-        gv.player1Egg = (gv.eggPage * 6) + egg;
+        if ((gv.eggPage * 6) + egg < gv.MAX_EGG)
+        {
+            gv.player1Egg = (gv.eggPage * 6) + egg;
+        }
+        else {
+
+            gv.player1Egg = -1;
+
+        }
 
     }
 
