@@ -6,13 +6,9 @@ public class Movement : MonoBehaviour
 {
     public bool DebugMovement;
     public int Speed;
+    public int JumpForce;
     private int FramesCollidedWithTerrian;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
