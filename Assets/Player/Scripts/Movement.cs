@@ -45,20 +45,20 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                transform.GetComponent<Rigidbody>().AddForce(Vector3.forward * Speed);
+                transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.forward * Speed);
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                transform.GetComponent<Rigidbody>().AddForce(Vector3.left * Speed);
+                transform.GetComponent<Rigidbody>().AddForce(-GameObject.Find("Camera").transform.right * Speed);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                transform.GetComponent<Rigidbody>().AddForce(Vector3.back * Speed);
+                transform.GetComponent<Rigidbody>().AddForce(-GameObject.Find("Camera").transform.forward * Speed);
 
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.GetComponent<Rigidbody>().AddForce(Vector3.right * Speed);
+                transform.GetComponent<Rigidbody>().AddForce(GameObject.Find("Camera").transform.right * Speed);
             }
         }
     }
